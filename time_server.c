@@ -18,6 +18,20 @@
  *------------------------------------------------------------------------
  */
 
+#define DATA_PDU 'D'
+#define FINAL_PDU 'F'
+#define ERROR_PDU 'E'
+#define FILENAME_PDU 'C'
+
+#define DATA_SIZE 100
+
+typedef struct SPDU {
+  char type;
+  char data[DATA_SIZE];
+} SPDU;
+
+
+
 void send_file(FILE* fp, int s, struct sockaddr_in fsin)
 {
   int n;
@@ -36,24 +50,26 @@ void send_file(FILE* fp, int s, struct sockaddr_in fsin)
   }
 
   // Sending the terminator
-  sendto(s, "File transfer complete", strlen("File transfer complete"), 0, (struct sockaddr*)&fsin, sizeof(fsin));
+  strcpy(buffer, "\nFile transfer complete");
+  sendto(s, buffer, strlen(buffer), 0, (struct sockaddr*)&fsin, sizeof(fsin));
 
   fclose(fp);
 }
 
 int main(int argc, char *argv[])
 {
+	static const SPDU empty_pdu;
+	SPDU pdu;
 	char ch, file_name[25];
 	struct  sockaddr_in fsin;	/* the from address of a client	*/
 	char	buf[100];		/* "input" buffer; any size > 0	*/
 	char    *pts;
-	char	*host = argv[1];
 	int	sock;			/* server socket		*/
 	time_t	now;			/* current time			*/
 	int	alen;			/* from-address length		*/
 	struct  sockaddr_in sin; /* an Internet endpoint address         */
-        int     n, s, type;        /* socket descriptor and socket type    */
-	int 	port=8080;
+    int     n, s, type;        /* socket descriptor and socket type    */
+	int 	port=atoi(argv[1]);
                                                                                 
 
 	switch(argc){

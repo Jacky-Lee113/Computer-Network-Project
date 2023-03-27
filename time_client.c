@@ -13,14 +13,20 @@
                                                                                 
 #include <netdb.h>
 
-#define	BUFSIZE 64
+#define	BUFSIZE 1024
 
+#define DATA_PDU 'D'
+#define FINAL_PDU 'F'
+#define ERROR_PDU 'E'
+#define FILENAME_PDU 'C'
 
+#define DATA_SIZE 100
 
-/*------------------------------------------------------------------------
- * main - UDP client for TIME service that prints the resulting time
- *------------------------------------------------------------------------
- */
+typedef struct SPDU {
+  char type;
+  char data[DATA_SIZE];
+} SPDU;
+
  
 int file_transfer(char* buf, int s, char MSG[256])
 {
@@ -31,14 +37,15 @@ int file_transfer(char* buf, int s, char MSG[256])
         perror("fopen failed");
         return 1;
     }
-	if (strstr(buf, "File transfer complete")) {
-		printf("File transfer complete");
-		return 1; // end of file transfer
-    }
 	if (strstr(buf, "File not found")) {
 		printf("File not found");
 		exit(0); // end of file transfer
     }
+	if (strstr(buf, "File transfer complete")) {
+		printf("File transfer complete");
+		exit(0); // end of file transfer
+    }
+	printf("[RECEIVING] Data: ");
     for (i = 0; i < s; i++) {
         ch = buf[i];
         if (ch == EOF || ch == '\0')
@@ -59,6 +66,8 @@ int file_transfer(char* buf, int s, char MSG[256])
  
 int main(int argc, char **argv)
 {
+	static const SPDU empty_pdu;
+	SPDU pdu;
 	char MSG[256] = "";
 	char	*host = argv[1];
 	int	port = atoi(argv[2]);
