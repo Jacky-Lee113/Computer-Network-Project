@@ -118,7 +118,7 @@ int main(int argc, char **argv)
         printf("Error: no data received\n");
     } else {
         printf(", received %d bytes\n", bytes_received);
-		printf("Number of packets received: %d\n", packets_sent);
+		printf("Number of packets received including terminating string: %d\n", packets_sent);
     }
     exit(0);
 }
