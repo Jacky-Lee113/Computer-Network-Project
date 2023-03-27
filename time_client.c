@@ -35,6 +35,10 @@ int file_transfer(char* buf, int s, char MSG[256])
 		printf("File transfer complete");
 		return 1; // end of file transfer
     }
+	if (strstr(buf, "File not found")) {
+		printf("File not found");
+		exit(0); // end of file transfer
+    }
     for (i = 0; i < s; i++) {
         ch = buf[i];
         if (ch == EOF || ch == '\0')
