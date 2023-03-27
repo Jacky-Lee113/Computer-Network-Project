@@ -35,7 +35,7 @@ void send_file(FILE* fp, int s, struct sockaddr_in fsin)
     }
   }
 
-  // Sending the 'END'
+  // Sending the terminator
   sendto(s, "File transfer complete", strlen("File transfer complete"), 0, (struct sockaddr*)&fsin, sizeof(fsin));
 
   fclose(fp);
