@@ -1,5 +1,6 @@
 # Computer-Network-Project
-This is the Hello message, TCP and UDP connection implementation for the final Computer Networks project at Ontario Tech University, year 2023.  **Prepared and Presented by: Jacky Lee, Nathanael Selvaraj and Susan Ahmadi.**  
+This is the Hello message, TCP and UDP connection implementation for the final Computer Networks project at Ontario Tech University, year 2023.  
+**Prepared and Presented by: Jacky Lee, Nathanael Selvaraj and Susan Ahmadi.**  
 # How to run:  
 Assuming VM1 has IP address of 192.168.0.10 and VM2 has IP address of 192.168.0.20 and port is 8000.  
 Assuming this is being run on virtual box and the 2 computers are capable of bridge adapter connections. 
