@@ -1,7 +1,8 @@
 # Computer-Network-Project
 This is the Hello message, TCP and UDP connection implementation for the final Computer Networks project at Ontario Tech University, year 2023.  
 # How to run:  
-Assuming VM1 has IP address of 192.168.0.10 and VM2 has IP address of 192.168.0.20 and port is 8000
+Assuming VM1 has IP address of 192.168.0.10 and VM2 has IP address of 192.168.0.20 and port is 8000.  
+Assuming this is being run on virtual box and the 2 computers are capable of bridge adapter connections. 
 1. Clone the repository on VM1 and VM2.  
 2. Assuming VM1 is your server and VM2 is your client, delete all files contianing "client" from VM1 and all files containing "server" from VM2  
 3. For the Hello code, on VM1 type ```gcc HelloServer.c -o HelloServer``` and on VM2 type ```gcc HelloClient.c -o HelloClient```.  
