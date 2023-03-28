@@ -51,6 +51,7 @@ void send_file(FILE* fp, int s, struct sockaddr_in fsin)
 
   // Sending the terminator
   strcpy(buffer, "\nFile transfer complete");
+  printf("\n\nFile transfer complete");
   sendto(s, buffer, strlen(buffer), 0, (struct sockaddr*)&fsin, sizeof(fsin));
 
   fclose(fp);

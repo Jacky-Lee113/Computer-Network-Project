@@ -42,8 +42,8 @@ int file_transfer(char* buf, int s, char MSG[256])
 		exit(0); // end of file transfer
     }
 	if (strstr(buf, "File transfer complete")) {
-		printf("File transfer complete");
-		exit(0); // end of file transfer
+		printf("\nFile transfer complete");
+		return 1; // end of file transfer
     }
 	printf("[RECEIVING] Data: ");
     for (i = 0; i < s; i++) {
